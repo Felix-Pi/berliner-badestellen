@@ -8,10 +8,14 @@
 import SwiftUI
 
 @main
-struct Berliner_BadestellenApp: App {
+struct Berliner_BadestellenApp: App {    
+    @State private var bathingAreas = BathingArea.data
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+            Startview(bathingAreas: $bathingAreas)
+            }
         }
     }
 }

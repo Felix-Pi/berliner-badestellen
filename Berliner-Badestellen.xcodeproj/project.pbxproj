@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		AB362DC02677879500A91314 /* Berliner_BadestellenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DBF2677879500A91314 /* Berliner_BadestellenApp.swift */; };
-		AB362DC22677879500A91314 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DC12677879500A91314 /* ContentView.swift */; };
 		AB362DC42677879600A91314 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB362DC32677879600A91314 /* Assets.xcassets */; };
 		AB362DC72677879600A91314 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB362DC62677879600A91314 /* Preview Assets.xcassets */; };
 		AB362DD22677879600A91314 /* Berliner_BadestellenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DD12677879600A91314 /* Berliner_BadestellenTests.swift */; };
 		AB362DDD2677879600A91314 /* Berliner_BadestellenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DDC2677879600A91314 /* Berliner_BadestellenUITests.swift */; };
+		AB362DEB26778AA400A91314 /* BathingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEA26778AA400A91314 /* BathingArea.swift */; };
+		AB362DED26778EA800A91314 /* Startview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEC26778EA800A91314 /* Startview.swift */; };
+		AB362DEF26778EC000A91314 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEE26778EC000A91314 /* DetailView.swift */; };
+		AB362DF126778ECE00A91314 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DF026778ECE00A91314 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +38,6 @@
 /* Begin PBXFileReference section */
 		AB362DBC2677879500A91314 /* Berliner-Badestellen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berliner-Badestellen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB362DBF2677879500A91314 /* Berliner_BadestellenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Berliner_BadestellenApp.swift; sourceTree = "<group>"; };
-		AB362DC12677879500A91314 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AB362DC32677879600A91314 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB362DC62677879600A91314 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AB362DC82677879600A91314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +47,10 @@
 		AB362DD82677879600A91314 /* Berliner-BadestellenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Berliner-BadestellenUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB362DDC2677879600A91314 /* Berliner_BadestellenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Berliner_BadestellenUITests.swift; sourceTree = "<group>"; };
 		AB362DDE2677879600A91314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB362DEA26778AA400A91314 /* BathingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingArea.swift; sourceTree = "<group>"; };
+		AB362DEC26778EA800A91314 /* Startview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startview.swift; sourceTree = "<group>"; };
+		AB362DEE26778EC000A91314 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		AB362DF026778ECE00A91314 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				AB362DBF2677879500A91314 /* Berliner_BadestellenApp.swift */,
-				AB362DC12677879500A91314 /* ContentView.swift */,
+				AB362DEC26778EA800A91314 /* Startview.swift */,
+				AB362DEE26778EC000A91314 /* DetailView.swift */,
+				AB362DF026778ECE00A91314 /* MapView.swift */,
+				AB362DEA26778AA400A91314 /* BathingArea.swift */,
 				AB362DC32677879600A91314 /* Assets.xcassets */,
 				AB362DC82677879600A91314 /* Info.plist */,
 				AB362DC52677879600A91314 /* Preview Content */,
@@ -259,8 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB362DC22677879500A91314 /* ContentView.swift in Sources */,
+				AB362DEB26778AA400A91314 /* BathingArea.swift in Sources */,
+				AB362DF126778ECE00A91314 /* MapView.swift in Sources */,
 				AB362DC02677879500A91314 /* Berliner_BadestellenApp.swift in Sources */,
+				AB362DEF26778EC000A91314 /* DetailView.swift in Sources */,
+				AB362DED26778EA800A91314 /* Startview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
