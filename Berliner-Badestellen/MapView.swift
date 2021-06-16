@@ -4,17 +4,41 @@
 //
 //  Created by Felix Pieschka on 14.06.21.
 //
-
+import MapKit
 import SwiftUI
 
+extension CLLocationCoordinate2D: Identifiable {
+    public var id: String {
+        "\(latitude)-\(longitude)"
+    }
+}
+
+struct Marker: Identifiable {
+    let id = UUID()
+    let name: String
+    let coordinate: CLLocationCoordinate2D
+}
+
 struct MapView: View {
+    let bathingArea: BathingArea
+    
+    var matchingItems:[MKMapItem] = []
+    var mapView: MKMapView? = nil
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let annotations = [
+            Marker(name: bathingArea.badname, coordinate: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude)),
+        ]
+        
+        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))), annotationItems: annotations) {
+            MapPin(coordinate: $0.coordinate)
+        }
+        
     }
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(bathingArea: BathingArea.data[0])
     }
 }

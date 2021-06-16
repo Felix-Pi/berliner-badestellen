@@ -19,7 +19,18 @@ struct Startview: View {
                             .font(.headline)
                         Spacer()
                         HStack {
-                            Label("\(bathingArea.wasserqualitaet)", systemImage: "star")
+                            
+                            switch bathingArea.farbe {
+                            case Qulities.green:
+                                Label("", systemImage: "circle.fill").foregroundColor(Color.green)
+                            case Qulities.orange:
+                                Label("", systemImage: "circle.fill").foregroundColor(Color.orange)
+                            case Qulities.red:
+                                Label("", systemImage: "circle.fill").foregroundColor(Color.red)
+                            default:
+                                Label("", systemImage: "circle.fill").foregroundColor(Color.gray)
+                            }
+                        
                             Spacer()
                             Label("\(bathingArea.temp)", systemImage: "thermometer")
                                 .padding(.trailing, 20)
@@ -32,11 +43,10 @@ struct Startview: View {
         .navigationTitle("Berliner Badestellen")
     }
     
-
 }
 
 struct Startview_Previews: PreviewProvider {
     static var previews: some View {
-        Startview(bathingAreas: .constant(BathingArea.data))
+        Startview(bathingAreas: .constant(BathingAreaJson.data))
     }
 }

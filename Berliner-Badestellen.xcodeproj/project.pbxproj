@@ -12,10 +12,11 @@
 		AB362DC72677879600A91314 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB362DC62677879600A91314 /* Preview Assets.xcassets */; };
 		AB362DD22677879600A91314 /* Berliner_BadestellenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DD12677879600A91314 /* Berliner_BadestellenTests.swift */; };
 		AB362DDD2677879600A91314 /* Berliner_BadestellenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DDC2677879600A91314 /* Berliner_BadestellenUITests.swift */; };
-		AB362DEB26778AA400A91314 /* BathingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEA26778AA400A91314 /* BathingArea.swift */; };
+		AB362DEB26778AA400A91314 /* BathingAreaJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEA26778AA400A91314 /* BathingAreaJson.swift */; };
 		AB362DED26778EA800A91314 /* Startview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEC26778EA800A91314 /* Startview.swift */; };
 		AB362DEF26778EC000A91314 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEE26778EC000A91314 /* DetailView.swift */; };
 		AB362DF126778ECE00A91314 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DF026778ECE00A91314 /* MapView.swift */; };
+		ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCCE6BC267A79830014C449 /* BathingArea.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,10 +48,11 @@
 		AB362DD82677879600A91314 /* Berliner-BadestellenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Berliner-BadestellenUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB362DDC2677879600A91314 /* Berliner_BadestellenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Berliner_BadestellenUITests.swift; sourceTree = "<group>"; };
 		AB362DDE2677879600A91314 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB362DEA26778AA400A91314 /* BathingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingArea.swift; sourceTree = "<group>"; };
+		AB362DEA26778AA400A91314 /* BathingAreaJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingAreaJson.swift; sourceTree = "<group>"; };
 		AB362DEC26778EA800A91314 /* Startview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startview.swift; sourceTree = "<group>"; };
 		AB362DEE26778EC000A91314 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		AB362DF026778ECE00A91314 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		ABCCE6BC267A79830014C449 /* BathingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingArea.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +107,8 @@
 				AB362DEC26778EA800A91314 /* Startview.swift */,
 				AB362DEE26778EC000A91314 /* DetailView.swift */,
 				AB362DF026778ECE00A91314 /* MapView.swift */,
-				AB362DEA26778AA400A91314 /* BathingArea.swift */,
+				AB362DEA26778AA400A91314 /* BathingAreaJson.swift */,
+				ABCCE6BC267A79830014C449 /* BathingArea.swift */,
 				AB362DC32677879600A91314 /* Assets.xcassets */,
 				AB362DC82677879600A91314 /* Info.plist */,
 				AB362DC52677879600A91314 /* Preview Content */,
@@ -268,7 +271,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB362DEB26778AA400A91314 /* BathingArea.swift in Sources */,
+				ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */,
+				AB362DEB26778AA400A91314 /* BathingAreaJson.swift in Sources */,
 				AB362DF126778ECE00A91314 /* MapView.swift in Sources */,
 				AB362DC02677879500A91314 /* Berliner_BadestellenApp.swift in Sources */,
 				AB362DEF26778EC000A91314 /* DetailView.swift in Sources */,

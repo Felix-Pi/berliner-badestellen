@@ -2,95 +2,110 @@
 //  BathingArea.swift
 //  Berliner-Badestellen
 //
-//  Created by Felix Pieschka on 14.06.21.
+//  Created by Felix Pieschka on 16.06.21.
 //
 
 import Foundation
-import SwiftUI
 
-
-//{
-//  messages: {
-//    messages: [], /* Array mit Meldungen, i.d.R. leer */
-//    success: NULL /* Bool mit Status der Ausführung, bei FALSE ist ein Fehler aufgetreten *(
-//  },
-//  results: {
-//    count: 113, /* Anzahl der Gesamtergebnisse */
-//    items_per_page: null /* Anzahl der Einträge pro Seite */
-//  },
-//  index: [
-//    {/* Einzelne Ergebniszeile */},
-//    {/* Einzelne Ergebniszeile */},
-//    {/* Einzelne Ergebniszeile */},
-//    {/* Einzelne Ergebniszeile */}
-//  ]
-//  item: {} /* Wird nur für Detaildatensätze verwendet */
-//}
-
-
-struct DataWrapper: Codable {
-    var index: [BathingArea]
+func parse_color(color : String) -> Qulities {
+    var col : String = color
+    
+    col = (col.contains(".jpg") ? col.replacingOccurrences(of: ".jpg", with: ""): col)
+    col = (col.contains("_prog") ? col.replacingOccurrences(of: "_prog", with: ""): col)
+    col = (col.contains("_a") ? col.replacingOccurrences(of: "_a", with: ""): col)
+    
+    switch col {
+    case "gruen":
+        return Qulities.green
+    case "gelb":
+        return Qulities.orange
+    case "orange":
+        return Qulities.orange
+    case "rot":
+        return Qulities.red
+    default:
+        return Qulities.gray
+    }
 }
 
+func parse_link(link: String) -> String {
+    return (link.contains(":") ? link.components(separatedBy: ":")[1] : "")
+}
 
-struct BathingArea: Codable {   
+struct BathingArea {
+    internal init(data: BathingAreaData, coords: Coords) {
+        self.id = data.id
+        
+        self.badname = data.badname
+        self.bezirk = data.bezirk
+        
+        self.farbeRaw = data.farbe
+        self.farbe = parse_color(color: data.farbe)
+        
+        self.dat = data.dat
+        self.eco = data.eco
+        self.ente = data.ente
+        self.sicht = data.sicht
+        self.temp = data.temp
+        
+        self.prognoselink = data.prognoselink
+        self.profillink = data.profillink
+        self.badestellelink = data.badestellelink
+        self.pdflink = data.pdflink
+        
+        self.prognoselinkFmt = parse_link(link: data.prognoselink)
+        self.profillinkFmt = parse_link(link: data.profillink)
+        self.badestellelinkFmt = parse_link(link: data.badestellelink)
+        self.pdflinkFmt = parse_link(link: data.pdflink) //todo: multipe : splitted
+        print(pdflinkFmt)
+        
+        self.latitude = coords.coordinates[0]
+        self.longitude = coords.coordinates[1]
+    }
+    
     var id : String
-    var prognoselink : String
-    var farbe : String //
-    var badestellelink : String //
-    var badname : String //
-    var bezirk : String //
+    
+    var badname : String
+    var bezirk : String
+    var farbeRaw : String
+    var farbe : Qulities
+    
     var dat : String
-    var cb : String //
-    var eco :String //
-    var ente :String //
-    var sicht : String //
-    var temp : String //
-    var profil : String //
-    var profillink : String //
-    var pdflink :  String //
-    var rss_name :  String
-    var bsl : String
-    var algen : String
-    var wasserqualitaet : String
-    var farb_id : String
-    var wasserqualitaet_lageso : String
-    var wasserqualitaet_predict : String
-    var dat_predict : String
+    var eco : String
+    var ente : String
+    var sicht : String
+    var temp : String
+    
+    var prognoselink : String
+    var badestellelink : String
+    var profillink : String
+    
+    var prognoselinkFmt : String
+    var badestellelinkFmt : String
+    var profillinkFmt : String
+    var pdflinkFmt : String
+    
+    var pdflink :  String
+    
+    var latitude : Double
+    var longitude : Double
+    
 }
-
-
 
 extension BathingArea {
-    static var data : [BathingArea] {
-        var bathingAreas = [BathingArea]()
-        
-        let urlString = "https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php/index/all.json?q="
-
-         if let url = URL(string: urlString) {
-             if let data = try? Data(contentsOf: url) {
-                let decoder = JSONDecoder()
-
-                 if let jsonPetitions = try? decoder.decode(DataWrapper.self, from: data) {
-                     bathingAreas = jsonPetitions.index
-                    
-                    print(bathingAreas)
-                    
-                    for (index, ba) in bathingAreas.enumerated() {
-                        bathingAreas[index].badestellelink = bathingAreas[index].badestellelink.components(separatedBy: ":")[1]
-                        bathingAreas[index].profillink = bathingAreas[index].profillink.components(separatedBy: ":")[1]
-                        bathingAreas[index].pdflink = bathingAreas[index].pdflink.components(separatedBy: ":")[1]
-                    }
-                    
-    
-                    
-                    return bathingAreas
-                 }
-             }
-         }
-        
-                    return [BathingArea(id: "none", prognoselink: "none", farbe: "none", badestellelink: "none", badname: "none", bezirk: "none", dat: "none", cb: "none", eco: "none", ente: "none", sicht: "none", temp: "none", profil: "none", profillink: "none", pdflink: "none", rss_name: "none", bsl: "none", algen: "none", wasserqualitaet: "none", farb_id: "none", wasserqualitaet_lageso: "none", wasserqualitaet_predict: "none", dat_predict: "none")]
+    static var empty : BathingArea {
+        return BathingArea(data: BathingAreaData.empty, coords: Coords.empty)
     }
-
+    
+    static var data : [BathingArea] {
+        return [BathingArea(data: BathingAreaData.empty, coords: Coords.empty)]
+    }
 }
 
+//source: https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/badegewaesserueberwachung/
+enum Qulities : String {
+    case green = "Zum Baden geeignet"
+    case orange = "Vom Baden wird abgeraten"
+    case red = "Badeverbot"
+    case gray = "Unbekannt"
+}

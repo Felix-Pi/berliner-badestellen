@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct Berliner_BadestellenApp: App {    
-    @State private var bathingAreas = BathingArea.data
+    @State private var bathingAreas = BathingAreaJson.data
     
     var body: some Scene {
         WindowGroup {
