@@ -17,6 +17,11 @@ struct DetailView: View {
         List {
             Section(header: Text("Badestelle")) {
                 HStack {
+                    Text("Badestelle")
+                    Spacer()
+                    Text("\(bathingArea.badname)")
+                }
+                HStack {
                     Text("Bezirk")
                     Spacer()
                     Text("\(bathingArea.bezirk)")
@@ -27,6 +32,7 @@ struct DetailView: View {
                     Spacer()
                     Text("\(bathingArea.farbe.rawValue)")
                 }
+                
             }
             
             
@@ -84,22 +90,32 @@ struct DetailView: View {
             
         }
         .listStyle(InsetGroupedListStyle())
-        .navigationTitle("\(bathingArea.badname)")
-        .navigationBarItems(trailing: Button(action: {
+        .navigationBarItems(
+            trailing: Button(action: {
             isPresented = true
         }) {
             Image(systemName: "map")
-        })
+            })
         
         .fullScreenCover(isPresented: $isPresented) {
+            VStack {
             NavigationView {
                 MapView(bathingArea: bathingArea)
-                    .navigationTitle(bathingArea.badname)
-                    .navigationBarItems(leading: Button("Back") {
-                        isPresented = false
-                    })
+                    .navigationBarItems(
+                        leading: Text(bathingArea.badname),
+                        trailing: Button(
+                            action: {
+                                isPresented = false
+                            }
+                        ){
+                        Text("Close")
+                            Image(systemName: "xmark")
+                        }
+                    )
+            }
             }
             
+   
         }
         
     }

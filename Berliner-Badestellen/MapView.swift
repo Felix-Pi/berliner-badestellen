@@ -22,9 +22,6 @@ struct Marker: Identifiable {
 struct MapView: View {
     let bathingArea: BathingArea
     
-    var matchingItems:[MKMapItem] = []
-    var mapView: MKMapView? = nil
-    
     var body: some View {
         let annotations = [
             Marker(name: bathingArea.badname, coordinate: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude)),
