@@ -11,7 +11,6 @@ import MapKit
 
 struct DetailView: View {
     let bathingArea: BathingArea
-    @State private var isPresented = false
     
     var body: some View {
         List {
@@ -29,6 +28,7 @@ struct DetailView: View {
                 }
                 
             }
+            
             
             
             Section(header: Text("Proben")) {
