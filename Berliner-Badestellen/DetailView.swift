@@ -89,37 +89,18 @@ struct DetailView: View {
             
             
         }
+
         .listStyle(InsetGroupedListStyle())
+        .navigationBarTitle(bathingArea.badname, displayMode: .inline)
         .navigationBarItems(
-            trailing: Button(action: {
-            isPresented = true
-        }) {
-            Image(systemName: "map")
-            })
-        
-        .fullScreenCover(isPresented: $isPresented) {
-            VStack {
-            NavigationView {
-                MapView(bathingArea: bathingArea)
-                    .navigationBarItems(
-                        leading: Text(bathingArea.badname),
-                        trailing: Button(
-                            action: {
-                                isPresented = false
-                            }
-                        ){
-                        Text("Close")
-                            Image(systemName: "xmark")
-                        }
-                    )
+            trailing: NavigationLink(destination: MapView(bathingArea: bathingArea)) {
+                Image(systemName: "map")
             }
-            }
-            
-   
-        }
-        
+        )
+       
     }
     
+
 }
 
 

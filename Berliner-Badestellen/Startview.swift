@@ -48,8 +48,10 @@ struct Startview: View {
                     }
                     .font(.caption)
                 }
+                .navigationBarTitle("Badestellen", displayMode: .inline)
             }
-        } .navigationTitle("Berliner Badestellen")
+           
+        }
        
     }
     

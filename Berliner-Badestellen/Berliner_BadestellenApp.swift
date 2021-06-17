@@ -9,13 +9,15 @@ import SwiftUI
 
 @main
 struct Berliner_BadestellenApp: App {    
-    @State private var bathingAreas = BathingAreaJson.data
+    @State private var bathingAreas = BathingArea.data
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
-            Startview(bathingAreas: $bathingAreas)
+                Startview(bathingAreas: $bathingAreas)
+                    .navigationBarTitle("Badestellen", displayMode: .inline)
             }
+            
         }
     }
 }

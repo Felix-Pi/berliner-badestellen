@@ -98,7 +98,7 @@ extension BathingArea {
     }
     
     static var data : [BathingArea] {
-        return [BathingArea(data: BathingAreaData.empty, coords: Coords.empty)]
+        return BathingAreaJson.data
     }
 }
 

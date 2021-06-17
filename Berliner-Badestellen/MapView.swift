@@ -26,11 +26,18 @@ struct MapView: View {
         let annotations = [
             Marker(name: bathingArea.badname, coordinate: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude)),
         ]
-        
+
         Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))), annotationItems: annotations) {
             MapPin(coordinate: $0.coordinate)
         }
-        
+        .navigationTitle("Map")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading: NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
+                Label(bathingArea.badname, systemImage: "chevron.backward")
+            }
+            
+        )
     }
 }
 
