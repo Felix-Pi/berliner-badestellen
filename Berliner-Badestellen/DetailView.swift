@@ -83,7 +83,7 @@ struct DetailView: View {
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(bathingArea.badname, displayMode: .inline)
         .navigationBarItems(
-            trailing: NavigationLink(destination: MapView.view(bathingArea: bathingArea, annotations: Marker.getMarkers(bathingArea: bathingArea), zoom: 0.06)) {
+            trailing: NavigationLink(destination: MapView.view(bathingArea: bathingArea, annotations: Marker.getMarker(bathingArea: bathingArea), zoom: 0.06)) {
                 Image(systemName: "map")
             }
         )

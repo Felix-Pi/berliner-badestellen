@@ -32,7 +32,7 @@ final class Marker: NSObject, MKAnnotation {
         return annotations
     }
     
-    static func getMarkers(bathingArea : BathingArea) -> [Marker] {
+    static func getMarker(bathingArea : BathingArea) -> [Marker] {
         return [Marker(title: bathingArea.badname, latitude: bathingArea.latitude, longitude: bathingArea.longitude)]
     }
 }
@@ -40,9 +40,8 @@ final class Marker: NSObject, MKAnnotation {
 
 struct MapView: UIViewRepresentable {
     let bathingArea: BathingArea
-    var annotations : [Marker]
+    @Binding var annotations : [Marker]
     var zoom : Double = 0.05
-    
     
     var locationManager = CLLocationManager()
     
@@ -52,7 +51,6 @@ struct MapView: UIViewRepresentable {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         
-        
         let mapView = MKMapView(frame: UIScreen.main.bounds)
         mapView.showsUserLocation = true
         mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude), span: MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)), animated: true)
@@ -60,18 +58,53 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
     
-    
     func updateUIView(_ uiView: MKMapView, context: Context) {
+        uiView.removeAnnotations(uiView.annotations)
         uiView.addAnnotations(annotations)
     }
     
     struct view: View {
-        let bathingArea: BathingArea
-        var annotations : [Marker]
-        var zoom : Double = 0.05
+        @State var bathingArea: BathingArea
+        @State var annotations : [Marker]
+        @State var zoom : Double = 0.05
         
+        @State private var includeAllMarkers = false
+                
         var body: some View {
-            MapView(bathingArea: bathingArea, annotations: annotations, zoom: zoom)
+            MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom)
+                .navigationTitle("Karte")
+                .navigationBarBackButtonHidden(true)
+                
+                .navigationBarItems(
+                    leading: NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
+                        Label(bathingArea.badname, systemImage: "chevron.backward")
+                    },
+                    trailing:
+                        HStack{
+                            Menu() {
+                                Button(action: {
+                                    includeAllMarkers.toggle()
+                                    annotations.removeAll()
+                                    
+                                    if(includeAllMarkers) {
+                                        annotations = Marker.getMarkers(bathingAreas: BathingArea.data)
+                                    } else {
+                                        annotations = Marker.getMarker(bathingArea: bathingArea)
+                                    }
+                                }) {
+                                    if(includeAllMarkers) {
+                                        Label("Only show Marker for '\(bathingArea.badname)'", systemImage: "eye.slash")
+                                    } else {
+                                        Label("Show ALL markers", systemImage: "eye")
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "ellipsis.circle")
+                            }
+                        }
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
         }
     }
     
