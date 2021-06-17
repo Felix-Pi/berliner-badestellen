@@ -12,8 +12,6 @@ struct Startview: View {
     @Binding var bathingAreas: [BathingArea]
     
     var body: some View {
-        //        Text("Berliner Badestellen").fontS
-        
         List {
             ForEach(bathingAreas, id: \.id) { bathingArea in
                 NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
@@ -55,7 +53,6 @@ struct Startview: View {
             
         }
         
-   
         .navigationBarItems(
             trailing:
                 HStack{

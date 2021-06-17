@@ -19,32 +19,44 @@ struct Marker: Identifiable {
     let coordinate: CLLocationCoordinate2D
 }
 
+func getAnnos(bathingAreas : [BathingArea]) -> [Marker] {
+    var annotations : [Marker] = []
+    for ba in bathingAreas {
+        annotations.append( Marker(name: ba.badname, coordinate: CLLocationCoordinate2D(latitude: ba.longitude, longitude: ba.latitude)))
+    }
+    
+    return annotations
+}
+
+func getAnnos(bathingArea : BathingArea) -> [Marker] {
+    return [Marker(name: bathingArea.badname, coordinate: CLLocationCoordinate2D(latitude:bathingArea.longitude, longitude: bathingArea.latitude))]
+}
+
 struct MapView: View {
     let bathingArea: BathingArea
+    var annotations : [Marker]
+    
     
     var body: some View {
-        let annotations = [
-            Marker(name: bathingArea.badname, coordinate: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude)),
-        ]
-
         Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))), annotationItems: annotations) {
             MapPin(coordinate: $0.coordinate)
         }
         .navigationTitle("Karte")
         .navigationBarBackButtonHidden(true)
+        
         .navigationBarItems(
             leading: NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
                 Label(bathingArea.badname, systemImage: "chevron.backward")
-            }
-            
+                
+            }            
         )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-           .ignoresSafeArea()
+        .ignoresSafeArea()
     }
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(bathingArea: BathingArea.data[0])
+        MapView(bathingArea: BathingArea.data[0], annotations: [])
     }
 }

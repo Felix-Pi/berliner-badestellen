@@ -8,11 +8,12 @@
 import SwiftUI
 import MapKit
 
-
 struct DetailView: View {
     let bathingArea: BathingArea
     
-    var body: some View {        
+    var body: some View {
+        
+        
         List {
             Section(header: Text("Badestelle")) {
                 HStack {
@@ -60,7 +61,7 @@ struct DetailView: View {
                 }
             }
             
-            Section(header: Text("Links"), footer: Text(bathingArea.additionalInfo.rawValue)) {                
+            Section(header: Text("Links"), footer: Text(bathingArea.additionalInfo.rawValue)) {
                 HStack {
                     
                     Link("Badestellenlink", destination: URL(string: "\(bathingArea.badestellelinkFmt)")!)
@@ -77,22 +78,20 @@ struct DetailView: View {
                     Link("Alle Probeentnahmen der Saision", destination: URL(string: "\(bathingArea.pdflinkFmt)")!)
                 }
             }
-            
-            
         }
         
-
+        
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(bathingArea.badname, displayMode: .inline)
         .navigationBarItems(
-            trailing: NavigationLink(destination: MapView(bathingArea: bathingArea)) {
+            trailing: NavigationLink(destination: MapView(bathingArea: bathingArea, annotations: getAnnos(bathingArea: bathingArea))) {
                 Image(systemName: "map")
             }
         )
-       
+        
     }
     
-
+    
 }
 
 

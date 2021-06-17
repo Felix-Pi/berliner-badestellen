@@ -11,7 +11,16 @@ import SwiftUI
 struct Berliner_BadestellenApp: App {    
     @State private var bathingAreas = BathingArea.data
     
+    @State private var selection: Tab = .list
+    
+    enum Tab {
+        case list
+        case map_all
+    }
+    
     var body: some Scene {
+        
+        
         WindowGroup {
             NavigationView {
                 Startview(bathingAreas: $bathingAreas)

@@ -59,7 +59,6 @@ extension BathingAreaJson {
                     
                     for ba in result.features {
                         bathingAreas.append(BathingArea(properties: ba.properties, coords: ba.geometry))
-                        print(ba.properties.data.farbe)
                     }
                     
                     return bathingAreas
