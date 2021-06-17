@@ -20,7 +20,6 @@ struct Berliner_BadestellenApp: App {
     
     var body: some Scene {
         
-        
         WindowGroup {
             NavigationView {
                 Startview(bathingAreas: $bathingAreas)

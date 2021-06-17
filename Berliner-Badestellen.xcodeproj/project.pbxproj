@@ -15,7 +15,7 @@
 		AB362DEB26778AA400A91314 /* BathingAreaJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEA26778AA400A91314 /* BathingAreaJson.swift */; };
 		AB362DED26778EA800A91314 /* Startview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEC26778EA800A91314 /* Startview.swift */; };
 		AB362DEF26778EC000A91314 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEE26778EC000A91314 /* DetailView.swift */; };
-		AB362DF126778ECE00A91314 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DF026778ECE00A91314 /* MapView.swift */; };
+		ABA26CFA267BCA9B00BEAB74 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA26CF9267BCA9B00BEAB74 /* MapView.swift */; };
 		ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCCE6BC267A79830014C449 /* BathingArea.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +51,7 @@
 		AB362DEA26778AA400A91314 /* BathingAreaJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingAreaJson.swift; sourceTree = "<group>"; };
 		AB362DEC26778EA800A91314 /* Startview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startview.swift; sourceTree = "<group>"; };
 		AB362DEE26778EC000A91314 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		AB362DF026778ECE00A91314 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		ABA26CF9267BCA9B00BEAB74 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		ABCCE6BC267A79830014C449 /* BathingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingArea.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,7 +106,7 @@
 				AB362DBF2677879500A91314 /* Berliner_BadestellenApp.swift */,
 				AB362DEC26778EA800A91314 /* Startview.swift */,
 				AB362DEE26778EC000A91314 /* DetailView.swift */,
-				AB362DF026778ECE00A91314 /* MapView.swift */,
+				ABA26CF9267BCA9B00BEAB74 /* MapView.swift */,
 				AB362DEA26778AA400A91314 /* BathingAreaJson.swift */,
 				ABCCE6BC267A79830014C449 /* BathingArea.swift */,
 				AB362DC32677879600A91314 /* Assets.xcassets */,
@@ -273,7 +273,7 @@
 			files = (
 				ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */,
 				AB362DEB26778AA400A91314 /* BathingAreaJson.swift in Sources */,
-				AB362DF126778ECE00A91314 /* MapView.swift in Sources */,
+				ABA26CFA267BCA9B00BEAB74 /* MapView.swift in Sources */,
 				AB362DC02677879500A91314 /* Berliner_BadestellenApp.swift in Sources */,
 				AB362DEF26778EC000A91314 /* DetailView.swift in Sources */,
 				AB362DED26778EA800A91314 /* Startview.swift in Sources */,

@@ -51,8 +51,12 @@ struct Startview: View {
                 .navigationBarTitle("Badestellen", displayMode: .inline)
             }
             
+            Section(header: Text("Alle Badestellen Berlins")) {
+                MapView.view(bathingArea: BathingArea(properties: PropertiesData.empty, coords: Coords(coordinates: [13.400,52.5067614])), annotations: Marker.getMarkers(bathingAreas: bathingAreas), zoom: 0.6)
+                    .frame(height: 300)
+            }
+            
         }
-        
         .navigationBarItems(
             trailing:
                 HStack{
@@ -79,8 +83,8 @@ struct Startview: View {
                         Image(systemName: "arrow.up.arrow.down")
                     }
                 }
-            
         )
+        
     }
     
 }

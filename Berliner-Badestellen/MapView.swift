@@ -2,61 +2,78 @@
 //  MapView.swift
 //  Berliner-Badestellen
 //
-//  Created by Felix Pieschka on 14.06.21.
+//  Created by Felix Pieschka on 17.06.21.
 //
-import MapKit
+
+import Foundation
 import SwiftUI
+import MapKit
 
-extension CLLocationCoordinate2D: Identifiable {
-    public var id: String {
-        "\(latitude)-\(longitude)"
-    }
-}
-
-struct Marker: Identifiable {
-    let id = UUID()
-    let name: String
-    let coordinate: CLLocationCoordinate2D
-}
-
-func getAnnos(bathingAreas : [BathingArea]) -> [Marker] {
-    var annotations : [Marker] = []
-    for ba in bathingAreas {
-        annotations.append( Marker(name: ba.badname, coordinate: CLLocationCoordinate2D(latitude: ba.longitude, longitude: ba.latitude)))
+final class Marker: NSObject, MKAnnotation {
+    let title: String?
+    let latitude : Double
+    let longitude : Double
+    var coordinate: CLLocationCoordinate2D
+    
+    init(title: String?, latitude: Double, longitude : Double) {
+        self.title = title
+        self.latitude = latitude
+        self.longitude = longitude
+        self.coordinate =  CLLocationCoordinate2D(latitude: longitude, longitude: latitude)
     }
     
-    return annotations
+    static func getMarkers(bathingAreas : [BathingArea]) -> [Marker] {
+        var annotations : [Marker] = []
+        for bathingArea in bathingAreas {
+            let marker : Marker = Marker(title: bathingArea.badname, latitude: bathingArea.latitude, longitude: bathingArea.longitude)
+            annotations.append(marker)
+        }
+        
+        return annotations
+    }
+    
+    static func getMarkers(bathingArea : BathingArea) -> [Marker] {
+        return [Marker(title: bathingArea.badname, latitude: bathingArea.latitude, longitude: bathingArea.longitude)]
+    }
 }
 
-func getAnnos(bathingArea : BathingArea) -> [Marker] {
-    return [Marker(name: bathingArea.badname, coordinate: CLLocationCoordinate2D(latitude:bathingArea.longitude, longitude: bathingArea.latitude))]
-}
 
-struct MapView: View {
+struct MapView: UIViewRepresentable {
     let bathingArea: BathingArea
     var annotations : [Marker]
+    var zoom : Double = 0.05
     
     
-    var body: some View {
-        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))), annotationItems: annotations) {
-            MapPin(coordinate: $0.coordinate)
-        }
-        .navigationTitle("Karte")
-        .navigationBarBackButtonHidden(true)
+    var locationManager = CLLocationManager()
+    
+    func makeUIView(context: Context) -> MKMapView {
+        //location request
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         
-        .navigationBarItems(
-            leading: NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
-                Label(bathingArea.badname, systemImage: "chevron.backward")
-                
-            }            
-        )
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .ignoresSafeArea()
+        
+        let mapView = MKMapView(frame: UIScreen.main.bounds)
+        mapView.showsUserLocation = true
+        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude), span: MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)), animated: true)
+        
+        return mapView
     }
+    
+    
+    func updateUIView(_ uiView: MKMapView, context: Context) {
+        uiView.addAnnotations(annotations)
+    }
+    
+    struct view: View {
+        let bathingArea: BathingArea
+        var annotations : [Marker]
+        var zoom : Double = 0.05
+        
+        var body: some View {
+            MapView(bathingArea: bathingArea, annotations: annotations, zoom: zoom)
+        }
+    }
+    
 }
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView(bathingArea: BathingArea.data[0], annotations: [])
-    }
-}

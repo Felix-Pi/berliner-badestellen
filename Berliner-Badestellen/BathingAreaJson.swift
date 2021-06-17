@@ -17,6 +17,7 @@ struct Feature: Codable {
     var geometry : Coords
     var properties : PropertiesData
 }
+
 struct PropertiesData: Codable {
     var title : String
     var href : String
@@ -92,9 +93,6 @@ extension Feature {
         return [Feature.empty]
     }
 }
-
-
-
 
 
 extension PropertiesData {

@@ -114,8 +114,6 @@ extension BathingArea {
     static var data : [BathingArea] {
         return BathingAreaJson.data
     }
-
-
 }
 
 //source: https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/badegewaesserueberwachung/
