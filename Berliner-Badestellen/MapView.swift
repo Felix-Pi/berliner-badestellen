@@ -30,7 +30,7 @@ struct MapView: View {
         Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))), annotationItems: annotations) {
             MapPin(coordinate: $0.coordinate)
         }
-        .navigationTitle("Map")
+        .navigationTitle("Karte")
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(
             leading: NavigationLink(destination: DetailView(bathingArea: bathingArea)) {

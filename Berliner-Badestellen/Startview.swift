@@ -12,7 +12,8 @@ struct Startview: View {
     @Binding var bathingAreas: [BathingArea]
     
     var body: some View {
-//        Text("Berliner Badestellen").fontS
+        //        Text("Berliner Badestellen").fontS
+        
         List {
             ForEach(bathingAreas, id: \.id) { bathingArea in
                 NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
@@ -53,15 +54,35 @@ struct Startview: View {
             }
             
         }
+        
+   
         .navigationBarItems(
             trailing:
-                Menu() {
-                    Button("Sort by Temperature", action: {})
-                    Button("Sort by WaterQuality", action: {})
-                    Button("Sort Alphabetically", action: {})
-                } label: {
-                    Image(systemName: "ellipsis.circle")
+                HStack{
+                    Menu() {
+                        Text("Bedestellen Sortieren nach")
+                        
+                        Button(action: { bathingAreas.sort { $0.temp > $1.temp } }) {
+                            Label("Temperatur", systemImage: "arrow.down")
+                        }
+                        Button(action: { bathingAreas.sort { $0.farbe.rawValue > $1.farbe.rawValue } }) {
+                            Label("Qualität", systemImage: "arrow.down")
+                        }
+                        Button(action: { bathingAreas.sort { $0.badname < $1.badname } }) {
+                            Label("Badname", systemImage: "arrow.up")
+                        }
+                        Button(action: { bathingAreas.sort { $0.bezirk < $1.bezirk } }) {
+                            Label("Bezirk", systemImage: "arrow.up")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                    
+                    Button(action: { bathingAreas.reverse() }) {
+                        Image(systemName: "arrow.up.arrow.down")
+                    }
                 }
+            
         )
     }
     

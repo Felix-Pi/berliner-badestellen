@@ -12,7 +12,7 @@ import MapKit
 struct DetailView: View {
     let bathingArea: BathingArea
     
-    var body: some View {
+    var body: some View {        
         List {
             Section(header: Text("Badestelle")) {
                 HStack {
@@ -28,8 +28,6 @@ struct DetailView: View {
                 }
                 
             }
-            
-            
             
             Section(header: Text("Proben")) {
                 HStack {
@@ -62,19 +60,17 @@ struct DetailView: View {
                 }
             }
             
-            Section(header: Text("Links")) {
-                let base_url = "https://www.berlin.de"
-                
+            Section(header: Text("Links"), footer: Text(bathingArea.additionalInfo.rawValue)) {                
                 HStack {
                     
-                    Link("Badestellenlink", destination: URL(string: "\(base_url + bathingArea.badestellelinkFmt)")!)
+                    Link("Badestellenlink", destination: URL(string: "\(bathingArea.badestellelinkFmt)")!)
                 }
                 HStack {
-                    Link("Badegewässerprofil", destination: URL(string: "\(base_url + bathingArea.profillinkFmt)")!)
+                    Link("Badegewässerprofil", destination: URL(string: "\(bathingArea.profillinkFmt)")!)
                 }
                 
                 HStack {
-                    Link("Prognoselink", destination: URL(string: "\(base_url + bathingArea.profillinkFmt)")!)
+                    Link("Prognoselink", destination: URL(string: "\(bathingArea.profillinkFmt)")!)
                 }
                 
                 HStack {
@@ -84,6 +80,7 @@ struct DetailView: View {
             
             
         }
+        
 
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(bathingArea.badname, displayMode: .inline)

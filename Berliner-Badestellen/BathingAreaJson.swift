@@ -18,6 +18,10 @@ struct Feature: Codable {
     var properties : PropertiesData
 }
 struct PropertiesData: Codable {
+    var title : String
+    var href : String
+    var description : String
+    var id : String
     var data : BathingAreaData
 }
 
@@ -54,7 +58,8 @@ extension BathingAreaJson {
                     var bathingAreas : [BathingArea] = []
                     
                     for ba in result.features {
-                        bathingAreas.append(BathingArea(data: ba.properties.data, coords: ba.geometry))
+                        bathingAreas.append(BathingArea(properties: ba.properties, coords: ba.geometry))
+                        print(ba.properties.data.farbe)
                     }
                     
                     return bathingAreas
@@ -95,7 +100,7 @@ extension Feature {
 
 extension PropertiesData {
     static var empty : PropertiesData {
-        return PropertiesData(data: BathingAreaData.empty)
+        return PropertiesData(title: "", href: "", description: "", id: "", data: BathingAreaData.empty)
     }
 }
 

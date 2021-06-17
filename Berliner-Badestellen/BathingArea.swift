@@ -7,6 +7,8 @@
 
 import Foundation
 
+let base_url = "https://www.berlin.de"
+
 func parse_color(color : String) -> Qulities {
     var col : String = color
     
@@ -28,12 +30,21 @@ func parse_color(color : String) -> Qulities {
     }
 }
 
+func parse_additional_info(color : String) -> AdditionalInfo {    
+    if(color.contains("_prog")) {return AdditionalInfo.prog}
+    if(color.contains("_a")) {return AdditionalInfo.A}
+
+    return AdditionalInfo.none
+}
+
 func parse_link(link: String) -> String {
     return (link.contains("\":") ? link.components(separatedBy: "\":")[1] : "")
 }
 
 struct BathingArea {
-    internal init(data: BathingAreaData, coords: Coords) {
+    internal init(properties: PropertiesData, coords: Coords) {
+        let data : BathingAreaData = properties.data;
+        
         self.id = data.id
         
         self.badname = data.badname
@@ -53,13 +64,15 @@ struct BathingArea {
         self.badestellelink = data.badestellelink
         self.pdflink = data.pdflink
         
-        self.prognoselinkFmt = parse_link(link: data.prognoselink)
-        self.profillinkFmt = parse_link(link: data.profillink)
-        self.badestellelinkFmt = parse_link(link: data.badestellelink)
+        self.prognoselinkFmt = base_url + parse_link(link: data.prognoselink)
+        self.profillinkFmt = base_url + parse_link(link: data.profillink)
+        self.badestellelinkFmt = base_url + parse_link(link: data.badestellelink)
         self.pdflinkFmt = parse_link(link: data.pdflink)
         
         self.latitude = coords.coordinates[0]
         self.longitude = coords.coordinates[1]
+        
+        self.additionalInfo = parse_additional_info(color: data.farbe)
     }
     
     var id : String
@@ -89,16 +102,20 @@ struct BathingArea {
     var latitude : Double
     var longitude : Double
     
+    var additionalInfo : AdditionalInfo
+    
 }
 
 extension BathingArea {
     static var empty : BathingArea {
-        return BathingArea(data: BathingAreaData.empty, coords: Coords.empty)
+        return BathingArea(properties: PropertiesData.empty, coords: Coords.empty)
     }
     
     static var data : [BathingArea] {
         return BathingAreaJson.data
     }
+
+
 }
 
 //source: https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/badegewaesserueberwachung/
@@ -107,4 +124,11 @@ enum Qulities : String {
     case orange = "Vom Baden wird abgeraten"
     case red = "Badeverbot"
     case gray = "Unbekannt"
+}
+
+
+enum AdditionalInfo : String {
+    case prog = "* Die hier angezeigte Bewertung wird unterstützt durch ein tagesaktuelles Vorhersagemodel."
+    case A = "* Erhöhtes Algenauftreten"
+    case none = ""
 }
