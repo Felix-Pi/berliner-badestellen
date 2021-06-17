@@ -38,6 +38,8 @@ struct MapView: View {
             }
             
         )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+           .ignoresSafeArea()
     }
 }
 
