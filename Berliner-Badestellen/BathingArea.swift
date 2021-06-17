@@ -29,7 +29,7 @@ func parse_color(color : String) -> Qulities {
 }
 
 func parse_link(link: String) -> String {
-    return (link.contains(":") ? link.components(separatedBy: ":")[1] : "")
+    return (link.contains("\":") ? link.components(separatedBy: "\":")[1] : "")
 }
 
 struct BathingArea {
@@ -56,8 +56,7 @@ struct BathingArea {
         self.prognoselinkFmt = parse_link(link: data.prognoselink)
         self.profillinkFmt = parse_link(link: data.profillink)
         self.badestellelinkFmt = parse_link(link: data.badestellelink)
-        self.pdflinkFmt = parse_link(link: data.pdflink) //todo: multipe : splitted
-        print(pdflinkFmt)
+        self.pdflinkFmt = parse_link(link: data.pdflink)
         
         self.latitude = coords.coordinates[0]
         self.longitude = coords.coordinates[1]

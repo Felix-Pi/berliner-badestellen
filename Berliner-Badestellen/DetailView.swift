@@ -17,11 +17,6 @@ struct DetailView: View {
         List {
             Section(header: Text("Badestelle")) {
                 HStack {
-                    Text("Badestelle")
-                    Spacer()
-                    Text("\(bathingArea.badname)")
-                }
-                HStack {
                     Text("Bezirk")
                     Spacer()
                     Text("\(bathingArea.bezirk)")
