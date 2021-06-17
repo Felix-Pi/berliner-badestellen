@@ -63,6 +63,23 @@ struct MapView: UIViewRepresentable {
         uiView.addAnnotations(annotations)
     }
     
+    struct view_small: View {
+        @State var bathingArea: BathingArea
+        @State var annotations : [Marker]
+        @State var zoom : Double = 0.05
+        
+        @State private var includeAllMarkers = false
+                
+        var body: some View {
+            MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom)
+                .navigationTitle("Karte")
+                .navigationBarBackButtonHidden(true)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+        }
+    }
+    
+    
     struct view: View {
         @State var bathingArea: BathingArea
         @State var annotations : [Marker]
@@ -107,6 +124,7 @@ struct MapView: UIViewRepresentable {
                 .ignoresSafeArea()
         }
     }
-    
 }
+
+
 
