@@ -27,7 +27,7 @@ struct HelpView: View {
                 .font(.headline)
             
             GroupBox(label:Label("\(WaterQuality.green.short_description)", systemImage: "circle.fill").foregroundColor(WaterQuality.green.color)) {}
-            GroupBox(label:Label("\(WaterQuality.red.short_description)", systemImage: "circle.fill").foregroundColor(WaterQuality.orange.color)) {}
+            GroupBox(label:Label("\(WaterQuality.orange.short_description)", systemImage: "circle.fill").foregroundColor(WaterQuality.orange.color)) {}
             GroupBox(label:Label("\(WaterQuality.red.short_description)", systemImage: "circle.fill").foregroundColor(WaterQuality.red.color)) {}
             
             Spacer()
