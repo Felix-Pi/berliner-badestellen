@@ -23,7 +23,7 @@ struct DetailView: View {
                 HStack {
                     Text("Qualität")
                     Spacer()
-                    Text("\(bathingArea.farbe.rawValue)")
+                    Text("\(bathingArea.quality.short_description)")
                 }
                 
             }

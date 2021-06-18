@@ -15,46 +15,17 @@ struct Startview: View {
         List {
             ForEach(bathingAreas, id: \.id) { bathingArea in
                 NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(bathingArea.badname)
-                                .font(.headline)
-                            
-                            Text(bathingArea.bezirk)
-                                .font(.footnote)
-                                .foregroundColor(Color.secondary)
-                        }
-                        
-                        Spacer()
-                        
-                        VStack(alignment: .trailing) {
-                            
-                            Text("\(bathingArea.temp)°C")
-                                .foregroundColor(Color.secondary)
-                                .padding(.trailing)
-                            
-                            switch bathingArea.farbe {
-                            case Qulities.green:
-                                Label("", systemImage: "circle.fill").foregroundColor(Color.green)
-                            case Qulities.orange:
-                                Label("", systemImage: "circle.fill").foregroundColor(Color.orange)
-                            case Qulities.red:
-                                Label("", systemImage: "circle.fill").foregroundColor(Color.red)
-                            default:
-                                Label("", systemImage: "circle.fill").foregroundColor(Color.gray)
-                            }
-                            
-                        }
-                    }
-                    .font(.caption)
+                    BathingAreaRow(bathingArea: bathingArea)
                 }
                 .navigationBarTitle("Badestellen", displayMode: .inline)
             }
             
+            Divider()
+            
             Section(header: Text("Alle Badestellen Berlins")) {
                 MapView.view_small(bathingArea: BathingArea(properties: PropertiesData.empty, coords: Coords(coordinates: [13.400,52.5067614])), annotations: Marker.getMarkers(bathingAreas: bathingAreas), zoom: 0.6)
                     .frame(height: 300)
-            }
+            }.padding(0)
             
         }
         .navigationBarItems(
@@ -66,7 +37,7 @@ struct Startview: View {
                         Button(action: { bathingAreas.sort { $0.temp > $1.temp } }) {
                             Label("Temperatur", systemImage: "arrow.down")
                         }
-                        Button(action: { bathingAreas.sort { $0.farbe.rawValue > $1.farbe.rawValue } }) {
+                        Button(action: { bathingAreas.sort { $0.quality.rawValue > $1.quality.rawValue } }) {
                             Label("Qualität", systemImage: "arrow.down")
                         }
                         Button(action: { bathingAreas.sort { $0.badname < $1.badname } }) {

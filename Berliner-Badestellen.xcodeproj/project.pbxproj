@@ -16,6 +16,7 @@
 		AB362DED26778EA800A91314 /* Startview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEC26778EA800A91314 /* Startview.swift */; };
 		AB362DEF26778EC000A91314 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEE26778EC000A91314 /* DetailView.swift */; };
 		AB45EDF3267CA664003FAD6B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */; };
+		AB45EDFA267CAE40003FAD6B /* BathingAreaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45EDF9267CAE40003FAD6B /* BathingAreaRow.swift */; };
 		ABA26CFA267BCA9B00BEAB74 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA26CF9267BCA9B00BEAB74 /* MapView.swift */; };
 		ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCCE6BC267A79830014C449 /* BathingArea.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		AB362DEC26778EA800A91314 /* Startview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startview.swift; sourceTree = "<group>"; };
 		AB362DEE26778EC000A91314 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		AB45EDF9267CAE40003FAD6B /* BathingAreaRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingAreaRow.swift; sourceTree = "<group>"; };
 		ABA26CF9267BCA9B00BEAB74 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		ABCCE6BC267A79830014C449 /* BathingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingArea.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,13 +107,8 @@
 		AB362DBE2677879500A91314 /* Berliner-Badestellen */ = {
 			isa = PBXGroup;
 			children = (
-				AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */,
-				AB362DBF2677879500A91314 /* Berliner_BadestellenApp.swift */,
-				AB362DEC26778EA800A91314 /* Startview.swift */,
-				AB362DEE26778EC000A91314 /* DetailView.swift */,
-				ABA26CF9267BCA9B00BEAB74 /* MapView.swift */,
-				AB362DEA26778AA400A91314 /* BathingAreaJson.swift */,
-				ABCCE6BC267A79830014C449 /* BathingArea.swift */,
+				AB45EDFB267CC23A003FAD6B /* Model */,
+				AB45EDF8267CAE13003FAD6B /* View */,
 				AB362DC32677879600A91314 /* Assets.xcassets */,
 				AB362DC82677879600A91314 /* Info.plist */,
 				AB362DC52677879600A91314 /* Preview Content */,
@@ -143,6 +140,28 @@
 				AB362DDE2677879600A91314 /* Info.plist */,
 			);
 			path = "Berliner-BadestellenUITests";
+			sourceTree = "<group>";
+		};
+		AB45EDF8267CAE13003FAD6B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */,
+				AB362DBF2677879500A91314 /* Berliner_BadestellenApp.swift */,
+				AB362DEC26778EA800A91314 /* Startview.swift */,
+				AB45EDF9267CAE40003FAD6B /* BathingAreaRow.swift */,
+				AB362DEE26778EC000A91314 /* DetailView.swift */,
+				ABA26CF9267BCA9B00BEAB74 /* MapView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB45EDFB267CC23A003FAD6B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AB362DEA26778AA400A91314 /* BathingAreaJson.swift */,
+				ABCCE6BC267A79830014C449 /* BathingArea.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */,
+				AB45EDFA267CAE40003FAD6B /* BathingAreaRow.swift in Sources */,
 				AB362DEB26778AA400A91314 /* BathingAreaJson.swift in Sources */,
 				ABA26CFA267BCA9B00BEAB74 /* MapView.swift in Sources */,
 				AB362DC02677879500A91314 /* Berliner_BadestellenApp.swift in Sources */,

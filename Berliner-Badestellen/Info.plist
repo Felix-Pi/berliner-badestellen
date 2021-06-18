@@ -34,8 +34,6 @@
 		<key>UIImageName</key>
 		<string></string>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>Launch Screen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
