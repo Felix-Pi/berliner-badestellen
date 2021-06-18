@@ -10,42 +10,7 @@ import SwiftUI
 struct BathingAreaRow: View {
     let bathingArea: BathingArea
     
-    var body: some View {
-        
-        //        HStack {
-        //            VStack(alignment: .leading) {
-        //                Text(bathingArea.badname)
-        //                    .font(.headline)
-        //
-        //                Text(bathingArea.bezirk)
-        //                    .font(.footnote)
-        //                    .foregroundColor(Color.secondary)
-        //            }
-        //
-        //            Spacer()
-        //
-        //            VStack(alignment: .trailing) {
-        //
-        //                Text("\(bathingArea.temp)°C")
-        //                    .foregroundColor(Color.secondary)
-        //                    .padding(.trailing)
-        //
-        //                switch bathingArea.farbe {
-        //                case Qulities.green:
-        //                    Label("", systemImage: "circle.fill").foregroundColor(Color.green)
-        //                case Qulities.orange:
-        //                    Label("", systemImage: "circle.fill").foregroundColor(Color.orange)
-        //                case Qulities.red:
-        //                    Label("", systemImage: "circle.fill").foregroundColor(Color.red)
-        //                default:
-        //                    Label("", systemImage: "circle.fill").foregroundColor(Color.gray)
-        //                }
-        //
-        //            }
-        //            .padding(.vertical, 4)
-        //        }
-        //        .font(.caption)
-        
+    var body: some View {       
         HStack {
             Image("berlin_lake")
                 .resizable()

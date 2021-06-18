@@ -12,7 +12,7 @@ struct Startview: View {
     @Binding var bathingAreas: [BathingArea]
     
     var body: some View {
-        List {
+        List() {
             ForEach(bathingAreas, id: \.id) { bathingArea in
                 NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
                     BathingAreaRow(bathingArea: bathingArea)
@@ -20,17 +20,18 @@ struct Startview: View {
                 .navigationBarTitle("Badestellen", displayMode: .inline)
             }
             
-            Divider()
-            
             Section(header: Text("Alle Badestellen Berlins")) {
                 MapView.view_small(bathingArea: BathingArea(properties: PropertiesData.empty, coords: Coords(coordinates: [13.400,52.5067614])), annotations: Marker.getMarkers(bathingAreas: bathingAreas), zoom: 0.6)
                     .frame(height: 300)
-            }.padding(0)
+            }
             
+            Section(header: Text("Erklärungen")) {
+                HelpView()
+            }
         }
         .navigationBarItems(
             trailing:
-                HStack{
+                HStack {
                     Menu() {
                         Text("Bedestellen Sortieren nach")
                         
@@ -55,7 +56,6 @@ struct Startview: View {
                     }
                 }
         )
-        
     }
     
 }
