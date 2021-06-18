@@ -18,6 +18,7 @@
 		AB45EDF3267CA664003FAD6B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */; };
 		AB45EDFA267CAE40003FAD6B /* BathingAreaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45EDF9267CAE40003FAD6B /* BathingAreaRow.swift */; };
 		AB45EDFD267CD649003FAD6B /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45EDFC267CD649003FAD6B /* HelpView.swift */; };
+		AB5D83EB267CEC4B00DFD285 /* screenshots in Resources */ = {isa = PBXBuildFile; fileRef = AB5D83EA267CEC4B00DFD285 /* screenshots */; };
 		ABA26CFA267BCA9B00BEAB74 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA26CF9267BCA9B00BEAB74 /* MapView.swift */; };
 		ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCCE6BC267A79830014C449 /* BathingArea.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AB45EDF9267CAE40003FAD6B /* BathingAreaRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingAreaRow.swift; sourceTree = "<group>"; };
 		AB45EDFC267CD649003FAD6B /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		AB5D83EA267CEC4B00DFD285 /* screenshots */ = {isa = PBXFileReference; lastKnownFileType = folder; name = screenshots; path = ../../../../../Desktop/screenshots; sourceTree = "<group>"; };
 		ABA26CF9267BCA9B00BEAB74 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		ABCCE6BC267A79830014C449 /* BathingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingArea.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 		AB362DC52677879600A91314 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				AB5D83EA267CEC4B00DFD285 /* screenshots */,
 				AB362DC62677879600A91314 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -270,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5D83EB267CEC4B00DFD285 /* screenshots in Resources */,
 				AB45EDF3267CA664003FAD6B /* Launch Screen.storyboard in Resources */,
 				AB362DC72677879600A91314 /* Preview Assets.xcassets in Resources */,
 				AB362DC42677879600A91314 /* Assets.xcassets in Resources */,
