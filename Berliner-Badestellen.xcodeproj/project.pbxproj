@@ -15,6 +15,7 @@
 		AB362DEB26778AA400A91314 /* BathingAreaJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEA26778AA400A91314 /* BathingAreaJson.swift */; };
 		AB362DED26778EA800A91314 /* Startview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEC26778EA800A91314 /* Startview.swift */; };
 		AB362DEF26778EC000A91314 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB362DEE26778EC000A91314 /* DetailView.swift */; };
+		AB45EDF3267CA664003FAD6B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */; };
 		ABA26CFA267BCA9B00BEAB74 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA26CF9267BCA9B00BEAB74 /* MapView.swift */; };
 		ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCCE6BC267A79830014C449 /* BathingArea.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		AB362DEA26778AA400A91314 /* BathingAreaJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingAreaJson.swift; sourceTree = "<group>"; };
 		AB362DEC26778EA800A91314 /* Startview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Startview.swift; sourceTree = "<group>"; };
 		AB362DEE26778EC000A91314 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		ABA26CF9267BCA9B00BEAB74 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		ABCCE6BC267A79830014C449 /* BathingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingArea.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +105,7 @@
 		AB362DBE2677879500A91314 /* Berliner-Badestellen */ = {
 			isa = PBXGroup;
 			children = (
+				AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */,
 				AB362DBF2677879500A91314 /* Berliner_BadestellenApp.swift */,
 				AB362DEC26778EA800A91314 /* Startview.swift */,
 				AB362DEE26778EC000A91314 /* DetailView.swift */,
@@ -245,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB45EDF3267CA664003FAD6B /* Launch Screen.storyboard in Resources */,
 				AB362DC72677879600A91314 /* Preview Assets.xcassets in Resources */,
 				AB362DC42677879600A91314 /* Assets.xcassets in Resources */,
 			);
