@@ -105,7 +105,7 @@ extension PropertiesData {
 extension BathingAreaData {
     static var empty : BathingAreaData {
         
-        return BathingAreaData(id: "None", prognoselink: "None", farbe: "None", badestellelink: "None", badname: "None", bezirk: "None", dat: "None", eco: "None", ente: "None", sicht: "None", temp: "None", profillink: "None", pdflink: "None"
+        return BathingAreaData(id: "", prognoselink: "", farbe: "", badestellelink: "", badname: "", bezirk: "", dat: "", eco: "", ente: "", sicht: "", temp: "", profillink: "", pdflink: ""
         )
     }
 }

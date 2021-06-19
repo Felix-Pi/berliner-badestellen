@@ -46,7 +46,6 @@ class Coordinator: NSObject, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
-        parent.isMarkerSelected = true
         let selected : String = (view.annotation?.title ?? "")!
         parent.selectedMarker = BathingArea.data.filter { $0.badname.contains(selected) }.first ?? BathingArea.empty
     }
@@ -54,7 +53,6 @@ class Coordinator: NSObject, MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView){
-        parent.isMarkerSelected = false
         parent.selectedMarker = BathingArea.empty
     }
     
@@ -73,7 +71,6 @@ struct MapView: UIViewRepresentable {
     
     typealias Context = UIViewRepresentableContext<Self>
     
-    @Binding var isMarkerSelected : Bool
     @Binding var selectedMarker : BathingArea
     
     var locationManager = CLLocationManager()
@@ -123,7 +120,7 @@ struct MapView: UIViewRepresentable {
         @State private var selectedMarker = BathingArea.empty
         
         var body: some View {
-            MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom, isMarkerSelected: $isMarkerSelected, selectedMarker: $selectedMarker)
+            MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom, selectedMarker: $selectedMarker)
                 .navigationTitle("Karte")
                 .navigationBarBackButtonHidden(true)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -139,11 +136,11 @@ struct MapView: UIViewRepresentable {
         
         @State private var includeAllMarkers = false
         
-        @State var isMarkerSelected = false
-        @State private var selectedMarker = BathingArea.empty
+        @State var showDetailSheetView = false
+        @State private var selectedMarker : BathingArea = BathingArea.empty
         
         var body: some View {
-            MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom, isMarkerSelected: $isMarkerSelected, selectedMarker: $selectedMarker)
+            MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom, selectedMarker: $selectedMarker)
                 .navigationTitle("Karte")
                 .navigationBarBackButtonHidden(true)
                 
@@ -153,8 +150,8 @@ struct MapView: UIViewRepresentable {
                     },
                     trailing:
                         HStack{
-                            if(isMarkerSelected && includeAllMarkers) {
-                                NavigationLink(destination: DetailView(bathingArea: selectedMarker)) {
+                            if(selectedMarker.badname != "" && includeAllMarkers) {
+                                Button(action: { showDetailSheetView = true }) {
                                     Text("Öffnen")
                                 }
                                 
@@ -185,6 +182,24 @@ struct MapView: UIViewRepresentable {
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .ignoresSafeArea()
+            
+            
+                .sheet(isPresented: $showDetailSheetView) {
+                    VStack() {
+                        HStack {
+                            Text(selectedMarker.badname).font(.headline)
+                            Spacer()
+                            Button(action: { showDetailSheetView = false }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.secondary)
+                            }
+
+                        }
+                        .padding()
+                        DetailView(bathingArea: selectedMarker)
+                        .padding()
+                    }
+                }
         }
     }
 }

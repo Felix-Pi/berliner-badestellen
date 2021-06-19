@@ -50,9 +50,8 @@ struct HelpView: View {
             
             Spacer()
             
-            Text(bacteria_wrapper.title)
-                .font(.headline)
-                .frame(alignment: .leading)
+            Text(bacteria_wrapper.title).font(.headline).frame(alignment: .leading)
+            
             ForEach(bacteria_wrapper.items) { item in
                 GroupBox(label:Label(item.title, systemImage: item.icon).foregroundColor(.blue)) {
                     ScrollView(.vertical, showsIndicators: true) {

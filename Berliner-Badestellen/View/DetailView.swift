@@ -122,7 +122,6 @@ struct DetailView: View {
                 }
                 .padding()
             }
-                    .frame(height: 100)
         }
 
         
