@@ -37,6 +37,18 @@ final class Marker: NSObject, MKAnnotation {
     }
 }
 
+class Coordinator: NSObject, MKMapViewDelegate {
+    var parent: MapView
+    
+    init(_ parent: MapView) {
+        self.parent = parent
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
+        print("didSelectAnnotationTapped")
+    }
+    
+}
 
 struct MapView: UIViewRepresentable {
     let bathingArea: BathingArea
@@ -47,15 +59,23 @@ struct MapView: UIViewRepresentable {
     static let zomm_all_markers : Double = 0.6
     static let berlin_coords : [Double] = [13.400,52.5067614]
     
+    typealias Context = UIViewRepresentableContext<Self>
+    
     var locationManager = CLLocationManager()
     
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
     func makeUIView(context: Context) -> MKMapView {
+        
         //location request
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
-        
+                
         let mapView = MKMapView(frame: UIScreen.main.bounds)
+        mapView.delegate = context.coordinator
         mapView.showsUserLocation = true
         mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude), span: MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)), animated: true)
         
@@ -66,12 +86,16 @@ struct MapView: UIViewRepresentable {
         uiView.removeAnnotations(uiView.annotations)
         uiView.addAnnotations(annotations)
         
+        //animate region
         var region : MKCoordinateRegion = uiView.region
-        
         region.span = MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)
-        
         uiView.setRegion(region, animated: true)
+        
+        
     }
+    
+    
+    
     
     struct view_small: View {
         @State var bathingArea: BathingArea
@@ -79,7 +103,7 @@ struct MapView: UIViewRepresentable {
         @State var zoom : Double = MapView.zomm_one_marker
         
         @State private var includeAllMarkers = false
-                
+        
         var body: some View {
             MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom)
                 .navigationTitle("Karte")
@@ -96,7 +120,7 @@ struct MapView: UIViewRepresentable {
         @State var zoom : Double = MapView.zomm_one_marker
         
         @State private var includeAllMarkers = false
-                
+        
         var body: some View {
             MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom)
                 .navigationTitle("Karte")
