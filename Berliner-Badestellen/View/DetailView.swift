@@ -12,6 +12,7 @@ struct DetailView: View {
     let bathingArea: BathingArea
     
     @State private var showHelpSheetView = false
+
     
     var body: some View {
         List {
@@ -102,26 +103,28 @@ struct DetailView: View {
                     }
                 }
         )
-
-                .sheet(isPresented: $showHelpSheetView) {
-                    VStack() {
-                        HStack {
-                            Text("Erklärungen").font(.headline)
-                            Spacer()
-                            Button(action: { showHelpSheetView = false }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundColor(.secondary)
-                            }
         
-                        }
-                        .padding()
-        
-                        ScrollView {
-                            HelpView()
-                        }
-                        .padding()
+        .sheet(isPresented: $showHelpSheetView) {
+            VStack() {
+                HStack {
+                    Text("Erklärungen").font(.headline)
+                    Spacer()
+                    Button(action: { showHelpSheetView = false }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.secondary)
                     }
+                    
                 }
+                .padding()
+                
+                ScrollView {
+                    HelpView()
+                }
+                .padding()
+            }
+                    .frame(height: 100)
+        }
+
         
         
     }
