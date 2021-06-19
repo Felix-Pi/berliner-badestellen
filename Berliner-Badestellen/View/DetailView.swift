@@ -11,55 +11,60 @@ import MapKit
 struct DetailView: View {
     let bathingArea: BathingArea
     
+    @State private var showSheetView = false
+    
     var body: some View {
         List {
             Section(header: Text("Badestelle")) {
                 HStack {
                     Text("Bezirk")
                     Spacer()
-                    Text("\(bathingArea.bezirk)")
+                    Text("\(bathingArea.bezirk)").foregroundColor(.secondary)
                 }
                 
                 HStack {
                     Text("Qualität")
                     Spacer()
                     Text("\(bathingArea.quality.short_description)")
+                        .bold()
+                        .foregroundColor(bathingArea.quality.color)
                 }
                 
             }
             
-            Section(header: Text("Proben")) {
+            Section(header: Text("Proben"), footer: Text(bathingArea.additionalInfo.rawValue)) {
                 HStack {
                     Text("Temperatur")
                     Spacer()
-                    Text("\(bathingArea.temp)°C")
+                    Text("\(bathingArea.temp)°C").foregroundColor(.secondary)
                 }
                 
                 HStack {
                     Text("Sichttiefe")
                     Spacer()
-                    Text("\(bathingArea.sicht) cm")
+                    Text("\(bathingArea.sicht) cm").foregroundColor(.secondary)
                 }
                 HStack {
                     Text("E.coli pro 100ml")
                     Spacer()
-                    Text("\(bathingArea.eco)")
+                    Text("\(bathingArea.eco)").foregroundColor(.secondary)
                 }
                 
                 HStack {
                     Text("Intestinale Enterokokken pro 100 ml")
                     Spacer()
-                    Text("\(bathingArea.ente)")
+                    Text("\(bathingArea.ente)").foregroundColor(.secondary)
                 }
                 
                 HStack {
                     Text("Probeentnahme")
                     Spacer()
-                    Text("\(bathingArea.dat)")
+                    Text("\(bathingArea.dat)").foregroundColor(.secondary)
                 }
             }
             
-            Section(header: Text("Links"), footer: Text(bathingArea.additionalInfo.rawValue)) {
+            
+            Section(header: Text("Links")) {
                 HStack {
                     
                     Link("Badestellenlink", destination: URL(string: "\(bathingArea.badestellelinkFmt)")!)
@@ -78,15 +83,43 @@ struct DetailView: View {
             }
             
         }
-        
-        
         .listStyle(InsetGroupedListStyle())
+        
         .navigationBarTitle(bathingArea.badname, displayMode: .inline)
         .navigationBarItems(
-            trailing: NavigationLink(destination: MapView.view(bathingArea: bathingArea, annotations: Marker.getMarker(bathingArea: bathingArea), zoom: 0.06)) {
-                Image(systemName: "map")
-            }
+            trailing:
+                HStack {
+                    NavigationLink(destination: MapView.view(bathingArea: bathingArea, annotations: Marker.getMarker(bathingArea: bathingArea), zoom: 0.06)) {
+                        Image(systemName: "map")
+                    }
+                    
+                    Button(action: { showSheetView = true }) {
+                        Image(systemName: "info")
+                    }
+                }
         )
+        
+        .sheet(isPresented: $showSheetView) {
+            VStack() {
+                HStack {
+                    Text("Erklärungen").font(.headline)
+                    Spacer()
+                    Button(action: { showSheetView = false }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.secondary)
+                    }
+                    
+                }
+                .padding()
+
+                ScrollView {
+                    HelpView()
+                }
+                .padding()
+            }
+        }
+        
+        
     }
     
     
