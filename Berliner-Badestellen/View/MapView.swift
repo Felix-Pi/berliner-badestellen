@@ -66,7 +66,11 @@ struct MapView: UIViewRepresentable {
         uiView.removeAnnotations(uiView.annotations)
         uiView.addAnnotations(annotations)
         
-        uiView.region.span = MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)
+        var region : MKCoordinateRegion = uiView.region
+        
+        region.span = MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)
+        
+        uiView.setRegion(region, animated: true)
     }
     
     struct view_small: View {
