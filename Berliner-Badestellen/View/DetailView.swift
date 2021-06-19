@@ -11,7 +11,7 @@ import MapKit
 struct DetailView: View {
     let bathingArea: BathingArea
     
-    @State private var showSheetView = false
+    @State private var showHelpSheetView = false
     
     var body: some View {
         List {
@@ -32,7 +32,15 @@ struct DetailView: View {
                 
             }
             
-            Section(header: Text("Proben"), footer: Text(bathingArea.additionalInfo.rawValue)) {
+            Section(
+                header:
+                    HStack {
+                        Text("Proben")
+                        Spacer()
+                        Button(action: { showHelpSheetView = true }) {
+                            Text("Was bedeuten diese Werte?")
+                        }
+                    }, footer: Text(bathingArea.additionalInfo.rawValue)) {
                 HStack {
                     Text("Temperatur")
                     Spacer()
@@ -89,35 +97,31 @@ struct DetailView: View {
         .navigationBarItems(
             trailing:
                 HStack {
-                    NavigationLink(destination: MapView.view(bathingArea: bathingArea, annotations: Marker.getMarker(bathingArea: bathingArea), zoom: 0.06)) {
+                    NavigationLink(destination: MapView.view(bathingArea: bathingArea, annotations: Marker.getMarker(bathingArea: bathingArea), zoom: MapView.zomm_one_marker)) {
                         Image(systemName: "map")
-                    }
-                    
-                    Button(action: { showSheetView = true }) {
-                        Image(systemName: "info")
                     }
                 }
         )
-        
-        .sheet(isPresented: $showSheetView) {
-            VStack() {
-                HStack {
-                    Text("Erklärungen").font(.headline)
-                    Spacer()
-                    Button(action: { showSheetView = false }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.secondary)
-                    }
-                    
-                }
-                .padding()
 
-                ScrollView {
-                    HelpView()
+                .sheet(isPresented: $showHelpSheetView) {
+                    VStack() {
+                        HStack {
+                            Text("Erklärungen").font(.headline)
+                            Spacer()
+                            Button(action: { showHelpSheetView = false }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.secondary)
+                            }
+        
+                        }
+                        .padding()
+        
+                        ScrollView {
+                            HelpView()
+                        }
+                        .padding()
+                    }
                 }
-                .padding()
-            }
-        }
         
         
     }

@@ -43,6 +43,10 @@ struct MapView: UIViewRepresentable {
     @Binding var annotations : [Marker]
     var zoom : Double = 0.05
     
+    static let zomm_one_marker : Double = 0.05
+    static let zomm_all_markers : Double = 0.6
+    static let berlin_coords : [Double] = [13.400,52.5067614]
+    
     var locationManager = CLLocationManager()
     
     func makeUIView(context: Context) -> MKMapView {
@@ -61,12 +65,14 @@ struct MapView: UIViewRepresentable {
     func updateUIView(_ uiView: MKMapView, context: Context) {
         uiView.removeAnnotations(uiView.annotations)
         uiView.addAnnotations(annotations)
+        
+        uiView.region.span = MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)
     }
     
     struct view_small: View {
         @State var bathingArea: BathingArea
         @State var annotations : [Marker]
-        @State var zoom : Double = 0.05
+        @State var zoom : Double = MapView.zomm_one_marker
         
         @State private var includeAllMarkers = false
                 
@@ -83,7 +89,7 @@ struct MapView: UIViewRepresentable {
     struct view: View {
         @State var bathingArea: BathingArea
         @State var annotations : [Marker]
-        @State var zoom : Double = 0.05
+        @State var zoom : Double = MapView.zomm_one_marker
         
         @State private var includeAllMarkers = false
                 
@@ -105,14 +111,16 @@ struct MapView: UIViewRepresentable {
                                     
                                     if(includeAllMarkers) {
                                         annotations = Marker.getMarkers(bathingAreas: BathingArea.data)
+                                        zoom = MapView.zomm_all_markers
                                     } else {
                                         annotations = Marker.getMarker(bathingArea: bathingArea)
+                                        zoom = MapView.zomm_one_marker
                                     }
                                 }) {
                                     if(includeAllMarkers) {
-                                        Label("Only show Marker for '\(bathingArea.badname)'", systemImage: "eye.slash")
+                                        Label("Nur '\(bathingArea.badname)' anzeigen", systemImage: "eye.slash")
                                     } else {
-                                        Label("Show ALL markers", systemImage: "eye")
+                                        Label("Alle Badestellen anzeigen", systemImage: "eye")
                                     }
                                 }
                             } label: {

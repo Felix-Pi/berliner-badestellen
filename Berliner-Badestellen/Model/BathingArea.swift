@@ -54,7 +54,19 @@ struct BathingArea {
         
         self.quality = parse_quality(farbe : data.farbe)
         
-        self.dat = data.dat
+        //parse date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "dd.MM.YYYY"
+        
+        if let date = dateFormatter.date(from: data.dat) {
+            self.dat = dateFormatterPrint.string(from: date)
+        } else {
+            self.dat = data.dat
+        }
+        
         self.eco = data.eco
         self.ente = data.ente
         self.sicht = data.sicht
