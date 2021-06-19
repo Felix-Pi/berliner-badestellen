@@ -144,6 +144,19 @@ enum WaterQuality : Int {
     case orange = 2
     case red = 3
     
+    var color: Color {
+        switch self {
+        case .green:
+            return Color.green
+        case .orange:
+            return Color.orange
+        case .red:
+            return Color.red
+        default:
+            return Color.gray
+        }
+    }
+    
     var short_description: String {
         switch self {
         case .green:
@@ -157,18 +170,43 @@ enum WaterQuality : Int {
         }
     }
     
-    var color: Color {
+    
+    var detailed_description: String {
         switch self {
         case .green:
-            return Color.green
+            return """
+- Kein Hinweis einer fäkalen Belastung unter Berücksichtigung der Angaben im Badegewässerprofil
+- Keine mikrobiologischen Belastungen liegen vor bei einer Anzahl von nachfolgenden Indikatorbakterien [Koloniebildene Einheiten]/ 100 ml:
+    < 1800 KBE/ 100 ml für Escherischia coli (E.coli) und
+    < 700 KBE/ 100 ml für Intestinale Enterokokken (I.E.)
+    < 10000 KBE/ 100 ml für Coliforme Bakterien
+    < 30 µg/l Blaualgentoxine
+- Das Vorhersagemodel sagt keine mikrobiologischen Belastungen voraus.
+"""
         case .orange:
-            return Color.orange
+            return """
+- Ereignisbezogene fäkale Belastung unter Berücksichtigung der Angaben im Badegewässerprofil (zum Beispiel Notauslässe)
+- Es liegen mikrobiologische Belastungen vor bei einer Anzahl von nachfolgenden Indikatorbakterien [Koloniebildene Einheiten]/ 100 ml:
+    > = 1800 KBE/ 100 ml für Escherischia coli (E.coli) und
+    > = 700 KBE/ 100 ml für Intestinale Enterokokken (I.E.)
+    > = 10000 KBE/ 100 ml für Coliforme Bakterien
+    > = 30 µg/l Blaualgentoxine
+- Das Vorhersagemodel sagt keine mikrobiologischen Belastungen voraus.
+"""
         case .red:
-            return Color.red
+            return """
+- Fäkale Belastungen des Badegewässers, sowie aus anderen hygienischen Gründen (Gefahrenabwehr)
+- Einzelwert wird überschritten
+- Es wird unverzüglich eine zweite Probenahme durchgeführt
+- Nachkontrolle: Wiederholte Überschreitung des Einzelwertes E.Coli >1800 KBE/ 100 ml oder I.E. >700 KBE/ 100 ml, Blaualgentoxine >100 µg/l
+- Coliforme Bakterien werden gemäß EU nicht zur Beurteilung herangezogen
+- Zuständige Behörde erlässt Badeverbot
+"""
         default:
-            return Color.gray
+            return "-"
         }
     }
+    
 }
 
 enum AdditionalInfo : String {
