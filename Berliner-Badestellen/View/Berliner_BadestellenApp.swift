@@ -7,8 +7,9 @@
 
 import SwiftUI
 
+
 @main
-struct Berliner_BadestellenApp: App {    
+struct Berliner_BadestellenApp: App {
     @State private var bathingAreas = BathingArea.data
     
     @State private var selection: Tab = .list
@@ -20,6 +21,7 @@ struct Berliner_BadestellenApp: App {
     
     var body: some Scene {
         WindowGroup {
+           
             NavigationView {
                 Startview(bathingAreas: $bathingAreas)
                     .navigationBarTitle("Badestellen", displayMode: .inline)

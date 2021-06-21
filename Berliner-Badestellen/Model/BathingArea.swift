@@ -93,12 +93,19 @@ struct BathingArea {
         self.longitude = coords.coordinates[1]
         
         self.additionalInfo = parse_additional_info(color: data.farbe)
+        
+
+        self.image = extract_image_url(url: self.badestellelinkFmt)
+        self.imageUI = RemoteImage(url: self.image)
     }
     
     var id : String
     
     var badname : String
     var bezirk : String
+    
+    var image : String
+    var imageUI : RemoteImage
     
     var quality : WaterQuality
     
@@ -128,6 +135,7 @@ struct BathingArea {
 
 extension BathingArea {
     static var empty : BathingArea {
+       
         return BathingArea(properties: PropertiesData.empty, coords: Coords.empty)
     }
     

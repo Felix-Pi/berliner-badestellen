@@ -12,88 +12,103 @@ struct DetailView: View {
     let bathingArea: BathingArea
     
     @State private var showHelpSheetView = false
-
+    
     
     var body: some View {
-        List {
-            Section(header: Text("Badestelle")) {
-                HStack {
-                    Text("Bezirk")
-                    Spacer()
-                    Text("\(bathingArea.bezirk)").foregroundColor(.secondary)
-                }
-                
-                HStack {
-                    Text("Qualität")
-                    Spacer()
-                    Text("\(bathingArea.quality.short_description)")
-                        .bold()
-                        .foregroundColor(bathingArea.quality.color)
-                }
-                
-            }
+        VStack {
             
-            Section(
-                header:
+            
+            
+            List {
+                Section {
+                    bathingArea.imageUI
+                        .cornerRadius(15)
+                        .frame(height: 300)
+                }.listRowInsets(EdgeInsets(
+                                    top: 0,
+                                    leading: 0,
+                                    bottom: 0,
+                                    trailing: 0))
+                
+                
+                Section(header: Text("Badestelle")) {
                     HStack {
-                        Text("Proben")
+                        Text("Bezirk")
                         Spacer()
-                        Button(action: { showHelpSheetView = true }) {
-                            Text("Was bedeuten diese Werte?")
-                        }
-                    }, footer: Text(bathingArea.additionalInfo.rawValue)) {
-                HStack {
-                    Text("Temperatur")
-                    Spacer()
-                    Text("\(bathingArea.temp)°C").foregroundColor(.secondary)
-                }
-                
-                HStack {
-                    Text("Sichttiefe")
-                    Spacer()
-                    Text("\(bathingArea.sicht) cm").foregroundColor(.secondary)
-                }
-                HStack {
-                    Text("E.coli pro 100ml")
-                    Spacer()
-                    Text("\(bathingArea.eco)").foregroundColor(.secondary)
-                }
-                
-                HStack {
-                    Text("Intestinale Enterokokken pro 100 ml")
-                    Spacer()
-                    Text("\(bathingArea.ente)").foregroundColor(.secondary)
-                }
-                
-                HStack {
-                    Text("Probeentnahme")
-                    Spacer()
-                    Text("\(bathingArea.dat)").foregroundColor(.secondary)
-                }
-            }
-            
-            
-            Section(header: Text("Links")) {
-                HStack {
+                        Text("\(bathingArea.bezirk)").foregroundColor(.secondary)
+                    }
                     
-                    Link("Badestellenlink", destination: URL(string: "\(bathingArea.badestellelinkFmt)")!)
-                }
-                HStack {
-                    Link("Badegewässerprofil", destination: URL(string: "\(bathingArea.profillinkFmt)")!)
+                    HStack {
+                        Text("Qualität")
+                        Spacer()
+                        Text("\(bathingArea.quality.short_description)")
+                            .bold()
+                            .foregroundColor(bathingArea.quality.color)
+                    }
+                    
                 }
                 
-                HStack {
-                    Link("Prognoselink", destination: URL(string: "\(bathingArea.profillinkFmt)")!)
+                Section(
+                    header:
+                        HStack {
+                            Text("Proben")
+                            Spacer()
+                            Button(action: { showHelpSheetView = true }) {
+                                Text("Was bedeuten diese Werte?")
+                            }
+                        }, footer: Text(bathingArea.additionalInfo.rawValue)) {
+                    HStack {
+                        Text("Temperatur")
+                        Spacer()
+                        Text("\(bathingArea.temp)°C").foregroundColor(.secondary)
+                    }
+                    
+                    HStack {
+                        Text("Sichttiefe")
+                        Spacer()
+                        Text("\(bathingArea.sicht) cm").foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("E.coli pro 100ml")
+                        Spacer()
+                        Text("\(bathingArea.eco)").foregroundColor(.secondary)
+                    }
+                    
+                    HStack {
+                        Text("Intestinale Enterokokken pro 100 ml")
+                        Spacer()
+                        Text("\(bathingArea.ente)").foregroundColor(.secondary)
+                    }
+                    
+                    HStack {
+                        Text("Probeentnahme")
+                        Spacer()
+                        Text("\(bathingArea.dat)").foregroundColor(.secondary)
+                    }
                 }
                 
-                HStack {
-                    Link("Alle Probeentnahmen der Saision", destination: URL(string: "\(bathingArea.pdflinkFmt)")!)
+                
+                Section(header: Text("Links")) {
+                    HStack {
+                        
+                        Link("Badestellenlink", destination: URL(string: "\(bathingArea.badestellelinkFmt)")!)
+                    }
+                    HStack {
+                        Link("Badegewässerprofil", destination: URL(string: "\(bathingArea.profillinkFmt)")!)
+                    }
+                    
+                    HStack {
+                        Link("Prognoselink", destination: URL(string: "\(bathingArea.profillinkFmt)")!)
+                    }
+                    
+                    HStack {
+                        Link("Alle Probeentnahmen der Saision", destination: URL(string: "\(bathingArea.pdflinkFmt)")!)
+                    }
                 }
+                
             }
-            
+            .listStyle(InsetGroupedListStyle())
         }
-        .listStyle(InsetGroupedListStyle())
-        
         .navigationBarTitle(bathingArea.badname, displayMode: .inline)
         .navigationBarItems(
             trailing:
@@ -123,7 +138,7 @@ struct DetailView: View {
                 .padding()
             }
         }
-
+        
         
         
     }

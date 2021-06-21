@@ -12,8 +12,7 @@ struct BathingAreaRow: View {
     
     var body: some View {       
         HStack {
-            Image("berlin_lake")
-                .resizable()
+            bathingArea.imageUI
                 .frame(width: 50, height: 50)
                 .cornerRadius(5)
             

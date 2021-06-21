@@ -18,6 +18,8 @@
 		AB45EDF3267CA664003FAD6B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */; };
 		AB45EDFA267CAE40003FAD6B /* BathingAreaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45EDF9267CAE40003FAD6B /* BathingAreaRow.swift */; };
 		AB45EDFD267CD649003FAD6B /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB45EDFC267CD649003FAD6B /* HelpView.swift */; };
+		AB502EA52680A886000C8339 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB502EA42680A886000C8339 /* Utility.swift */; };
+		AB502EA72680AC7D000C8339 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB502EA62680AC7D000C8339 /* RemoteImage.swift */; };
 		AB5D83EB267CEC4B00DFD285 /* screenshots in Resources */ = {isa = PBXBuildFile; fileRef = AB5D83EA267CEC4B00DFD285 /* screenshots */; };
 		ABA26CFA267BCA9B00BEAB74 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA26CF9267BCA9B00BEAB74 /* MapView.swift */; };
 		ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCCE6BC267A79830014C449 /* BathingArea.swift */; };
@@ -58,6 +60,8 @@
 		AB45EDF2267CA664003FAD6B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AB45EDF9267CAE40003FAD6B /* BathingAreaRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingAreaRow.swift; sourceTree = "<group>"; };
 		AB45EDFC267CD649003FAD6B /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		AB502EA42680A886000C8339 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		AB502EA62680AC7D000C8339 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		AB5D83EA267CEC4B00DFD285 /* screenshots */ = {isa = PBXFileReference; lastKnownFileType = folder; name = screenshots; path = ../../../../../Desktop/screenshots; sourceTree = "<group>"; };
 		ABA26CF9267BCA9B00BEAB74 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		ABCCE6BC267A79830014C449 /* BathingArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathingArea.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 		AB362DBE2677879500A91314 /* Berliner-Badestellen */ = {
 			isa = PBXGroup;
 			children = (
+				AB502EA32680A870000C8339 /* utilities */,
 				AB45EDFB267CC23A003FAD6B /* Model */,
 				AB45EDF8267CAE13003FAD6B /* View */,
 				AB362DC32677879600A91314 /* Assets.xcassets */,
@@ -168,6 +173,15 @@
 				ABCCE6BC267A79830014C449 /* BathingArea.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AB502EA32680A870000C8339 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AB502EA42680A886000C8339 /* Utility.swift */,
+				AB502EA62680AC7D000C8339 /* RemoteImage.swift */,
+			);
+			path = utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +317,8 @@
 			files = (
 				ABCCE6BD267A79830014C449 /* BathingArea.swift in Sources */,
 				AB45EDFA267CAE40003FAD6B /* BathingAreaRow.swift in Sources */,
+				AB502EA52680A886000C8339 /* Utility.swift in Sources */,
+				AB502EA72680AC7D000C8339 /* RemoteImage.swift in Sources */,
 				AB362DEB26778AA400A91314 /* BathingAreaJson.swift in Sources */,
 				ABA26CFA267BCA9B00BEAB74 /* MapView.swift in Sources */,
 				AB362DC02677879500A91314 /* Berliner_BadestellenApp.swift in Sources */,
