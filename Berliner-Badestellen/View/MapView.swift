@@ -47,9 +47,9 @@ class Coordinator: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
         let selected : String = (view.annotation?.title ?? "")!
-        parent.selectedMarker = BathingArea.data.filter { $0.badname.contains(selected) }.first ?? BathingArea.empty
+        parent.selectedMarker = parent.bathingAreas.filter { $0.badname.contains(selected) }.first ?? BathingArea.empty
     }
-        
+    
     
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView){
@@ -61,6 +61,8 @@ class Coordinator: NSObject, MKMapViewDelegate {
 
 struct MapView: UIViewRepresentable {
     let bathingArea: BathingArea
+    let bathingAreas : [BathingArea]
+    
     @Binding var annotations : [Marker]
     var zoom : Double = 0.05
     
@@ -74,7 +76,7 @@ struct MapView: UIViewRepresentable {
     @Binding var selectedMarker : BathingArea
     
     var locationManager = CLLocationManager()
-        
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -120,7 +122,7 @@ struct MapView: UIViewRepresentable {
         @State private var selectedMarker = BathingArea.empty
         
         var body: some View {
-            MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom, selectedMarker: $selectedMarker)
+            MapView(bathingArea: bathingArea, bathingAreas: [], annotations: $annotations, zoom: zoom, selectedMarker: $selectedMarker)
                 .navigationTitle("Karte")
                 .navigationBarBackButtonHidden(true)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -140,7 +142,7 @@ struct MapView: UIViewRepresentable {
         @State private var selectedMarker : BathingArea = BathingArea.empty
         
         var body: some View {
-            MapView(bathingArea: bathingArea, annotations: $annotations, zoom: zoom, selectedMarker: $selectedMarker)
+            MapView(bathingArea: bathingArea,bathingAreas: [bathingArea], annotations: $annotations, zoom: zoom, selectedMarker: $selectedMarker)
                 .navigationTitle("Karte")
                 .navigationBarBackButtonHidden(true)
                 
@@ -182,8 +184,8 @@ struct MapView: UIViewRepresentable {
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .ignoresSafeArea()
-            
-            
+                
+                
                 .sheet(isPresented: $showDetailSheetView) {
                     VStack() {
                         HStack {
@@ -193,11 +195,11 @@ struct MapView: UIViewRepresentable {
                                 Image(systemName: "xmark.circle.fill")
                                     .foregroundColor(.secondary)
                             }
-
+                            
                         }
                         .padding()
                         DetailView(bathingArea: selectedMarker)
-                        .padding()
+                            .padding()
                     }
                 }
         }
