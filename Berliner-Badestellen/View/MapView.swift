@@ -47,6 +47,8 @@ class Coordinator: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
         let selected : String = (view.annotation?.title ?? "")!
+        print(selected)
+        print(parent.bathingAreas)
         parent.selectedMarker = parent.bathingAreas.filter { $0.badname.contains(selected) }.first ?? BathingArea.empty
     }
     
@@ -105,6 +107,7 @@ struct MapView: UIViewRepresentable {
         //animate region
         var region : MKCoordinateRegion = uiView.region
         region.span = MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)
+        region.center = CLLocationCoordinate2D(latitude: bathingArea.longitude, longitude: bathingArea.latitude);
         uiView.setRegion(region, animated: true)
     }
     
@@ -133,6 +136,7 @@ struct MapView: UIViewRepresentable {
     
     struct view: View {
         @State var bathingArea: BathingArea
+        @State var bathingAreas: [BathingArea]
         @State var annotations : [Marker]
         @State var zoom : Double = MapView.zomm_one_marker
         
@@ -142,12 +146,12 @@ struct MapView: UIViewRepresentable {
         @State private var selectedMarker : BathingArea = BathingArea.empty
         
         var body: some View {
-            MapView(bathingArea: bathingArea,bathingAreas: [bathingArea], annotations: $annotations, zoom: zoom, selectedMarker: $selectedMarker)
+            MapView(bathingArea: bathingArea,bathingAreas: bathingAreas, annotations: $annotations, zoom: zoom, selectedMarker: $selectedMarker)
                 .navigationTitle("Karte")
                 .navigationBarBackButtonHidden(true)
                 
                 .navigationBarItems(
-                    leading: NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
+                    leading: NavigationLink(destination: DetailView(bathingArea: bathingArea, bathingAreas: bathingAreas)) {
                         Label(bathingArea.badname, systemImage: "chevron.backward")
                     },
                     trailing:
@@ -157,6 +161,8 @@ struct MapView: UIViewRepresentable {
                                     Text("Öffnen")
                                 }
                                 
+                            } else {
+                                Text(selectedMarker.badname)
                             }
                             Menu() {
                                 Button(action: {
@@ -164,7 +170,7 @@ struct MapView: UIViewRepresentable {
                                     annotations.removeAll()
                                     
                                     if(includeAllMarkers) {
-                                        annotations = Marker.getMarkers(bathingAreas: BathingArea.data)
+                                        annotations = Marker.getMarkers(bathingAreas: bathingAreas)
                                         zoom = MapView.zomm_all_markers
                                     } else {
                                         annotations = Marker.getMarker(bathingArea: bathingArea)
@@ -198,7 +204,7 @@ struct MapView: UIViewRepresentable {
                             
                         }
                         .padding()
-                        DetailView(bathingArea: selectedMarker)
+                        DetailView(bathingArea: selectedMarker, bathingAreas: bathingAreas)
                             .padding()
                     }
                 }

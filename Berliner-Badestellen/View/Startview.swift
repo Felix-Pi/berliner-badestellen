@@ -20,7 +20,7 @@ struct Startview: View {
                             Text("\(bathingAreas.count)")
                         }.padding(.trailing)) {
                 ForEach(bathingAreas, id: \.id) { bathingArea in
-                    NavigationLink(destination: DetailView(bathingArea: bathingArea)) {
+                    NavigationLink(destination: DetailView(bathingArea: bathingArea, bathingAreas: bathingAreas)) {
                         BathingAreaRow(bathingArea: bathingArea)
                     }
                     .navigationBarTitle("Badestellen", displayMode: .inline)

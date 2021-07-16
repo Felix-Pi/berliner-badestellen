@@ -10,15 +10,13 @@ import MapKit
 
 struct DetailView: View {
     let bathingArea: BathingArea
+    @State var bathingAreas: [BathingArea]
     
     @State private var showHelpSheetView = false
     
     
     var body: some View {
         VStack {
-            
-            
-            
             List {
                 Section {
                     bathingArea.imageUI
@@ -113,7 +111,7 @@ struct DetailView: View {
         .navigationBarItems(
             trailing:
                 HStack {
-                    NavigationLink(destination: MapView.view(bathingArea: bathingArea, annotations: Marker.getMarker(bathingArea: bathingArea), zoom: MapView.zomm_one_marker)) {
+                    NavigationLink(destination: MapView.view(bathingArea: bathingArea,bathingAreas: bathingAreas, annotations: Marker.getMarker(bathingArea: bathingArea), zoom: MapView.zomm_one_marker)) {
                         Image(systemName: "map")
                     }
                 }
@@ -149,6 +147,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(bathingArea: BathingArea.data[0])
+        DetailView(bathingArea: BathingArea.empty, bathingAreas: [BathingArea.empty])
     }
 }
