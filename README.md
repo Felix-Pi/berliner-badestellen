@@ -19,24 +19,34 @@
 * [LaGeSo Badegewaesserueberwachung](https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/badegewaesserueberwachung/) 
 
 ## ToDo
-- [ ] StartView: Get real images / add more images
-- [ ] StartView: Map padding seems to be weird
-- [ ] StartView:  improve sorting stuff
+- [ ] StartView: improve sorting stuff
 - [ ] StartViewadd distance to current locatin
-- [ ] DetailView: improve AdditionalInfo message
-- [ ] DetailView: Format Date
 - [ ] DetailView: Navigate to BathingArea
-- [ ] HelpView: Fix Orange quality text
+- [x] StartView: Get real images / add more images
+- [x] StartView: Map padding seems to be off
+- [x] DetailView: improve AdditionalInfo message
+- [x] DetailView: Format Date
 - [x] Add HelpView
+- [x] HelpView: Fix Orange quality text
 - [x] StartView: Add Sorting button
 - [x] MapView: toggle all markers
 - [x] Add current location to Map
 
 ---
+## Demo
+[![Youtube](https://img.youtube.com/vi/f0Fleq1jzFE/hqdefault.jpg)](https://youtu.be/f0Fleq1jzFE)
 
 ## Screenshots
-![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/main/screenshots/bb_01.png "StartView 1")
-![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/main/screenshots/bb_02.png "StartView 2")
-![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/main/screenshots/bb_03.png "StartView 3")
-![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/main/screenshots/bb_04.png "Detailiew")
-![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/main/screenshots/bb_05.png "MapView 3")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_1.jpeg "StartView 1")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_6.jpeg "DetailView 1")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_7.jpeg "DetailView 2")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_8.jpeg "MapView 1")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_9.jpeg "MapView 2")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_10.jpeg "MapView 3")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_2.jpeg "StartView 2")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_3.jpeg "StartView 3")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_4.jpeg "StartView 4")
+![alt text](https://github.com/Felix-Pi/berliner-badestellen/blob/docs/docs/bb_5.jpeg "StartView 5")
+
+
+
